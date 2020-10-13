@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+
+EXCEPTIONS = (
+    'COPYING',
+    '.git',
+    '.gitmodules',
+    'install',
+)
+
+home = Path.home()
+
+for source in Path(__file__).parent.iterdir():
+    if source.name in EXCEPTIONS:
+        continue
+
+    source = source.resolve()
+    target = Path(home, source.name)
+    try:
+        target.symlink_to(source)
+        print(f'Symlinked "{source.name}"')
+    except FileExistsError:
+        print(f'Skipped {source.name}: File exists')
