@@ -1,22 +1,25 @@
-# .bashrc
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+	source /etc/bashrc
 fi
 
 # Source bash-git-prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
 	GIT_PROMPT_THEME=Custom
 	GIT_PROMPT_ONLY_IN_REPO=1
-	. $HOME/.bash-git-prompt/gitprompt.sh
+	source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 
 # User specific environment
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export EDITOR=nano
 export VISUAL='code --new-window --wait'
+
+# Bash settings
 PROMPT_DIRTRIM=2
+HISTCONTROL='erasedups:ignorespace'
+HISTFILESIZE=1000
+HISTSIZE=1000
 PS1="[\e[33m\w\e[0m] "
 
 # User specific aliases and functions
